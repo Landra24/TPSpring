@@ -41,34 +41,3 @@ CREATE TABLE Curso_Alumno (
     FOREIGN KEY (curso_id) REFERENCES Cursos(id),
     FOREIGN KEY (alumno_id) REFERENCES Alumnos(id)
 );
-
--- Insertar docentes
-INSERT INTO Docentes (legajo, nombre) VALUES
-(12345, 'Juan Pérez'),
-(67890, 'María Gómez');
-
--- Insertar temas
-INSERT INTO Temas (nombre, descripcion) VALUES
-('Matemáticas', 'Curso de introducción a las matemáticas'),
-('Programación', 'Curso de introducción a la programación en Java'),
-('Historia', 'Estudio de los eventos históricos más relevantes');
-
--- Insertar alumnos
-INSERT INTO Alumnos (nombre, fechaNacimiento) VALUES
-('Carlos López', '1990-05-21'),
-('Ana Rodríguez', '1995-07-14'),
-('Pedro Martínez', '1992-03-09');
-
--- Insertar cursos
-INSERT INTO Cursos (tema_id, fechaInicio, fechaFin, docente_legajo, precio) VALUES
-(1, '2024-01-10', '2024-03-10', 12345, 1500.00),  -- Curso de Matemáticas con Juan Pérez
-(2, '2024-02-01', '2024-04-01', 67890, 2000.00),  -- Curso de Programación con María Gómez
-(3, '2024-03-15', '2024-05-15', 12345, 1800.00);  -- Curso de Historia con Juan Pérez
-
--- Asignar alumnos a cursos (relación muchos a muchos)
-INSERT INTO Curso_Alumno (curso_id, alumno_id) VALUES
-(1, 1), -- Carlos López en el curso de Matemáticas
-(1, 2), -- Ana Rodríguez en el curso de Matemáticas
-(2, 3), -- Pedro Martínez en el curso de Programación
-(3, 1), -- Carlos López en el curso de Historia
-(3, 3); -- Pedro Martínez en el curso de Historia
