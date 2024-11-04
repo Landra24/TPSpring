@@ -1,0 +1,125 @@
+<div class="container"> 
+
+
+<div class="container mt-4">
+  <div class="mb-4">
+    <h2>Buscar Cursos por Fecha de Fin</h2>
+    <div class="input-group mb-3">
+      <input type="date" [(ngModel)]="fechaFin" class="form-control" placeholder="Ingrese la fecha">
+      <button (click)="buscarCursosPorFecha()" class="btn btn-success ms-2">Buscar</button>
+    </div>
+  </div>
+
+  <div *ngIf="cursosFiltrados.length > 0; else noCursos">
+    <h3>Resultados de la Búsqueda</h3>
+    <table class="table table-striped table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th>ID</th>
+          <th>Tema</th>
+          <th>Fecha de Inicio</th>
+          <th>Fecha de Fin</th>
+          <th>Docente</th>
+          <th>Precio</th>
+          <th>Alumnos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursosFiltrados">
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.tema.nombre }}</td>
+          <td>{{ curso.fechaInicio | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ curso.fechaFin | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ curso.docente.nombre }}</td>
+          <td>{{ curso.precio | currency }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let alumno of curso.alumnos">
+                {{ alumno.nombre }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noCursos>
+    <p>No se encontraron cursos con la fecha de fin seleccionada.</p>
+  </ng-template>
+</div>
+
+<div class="container mt-4">
+  <div class="mb-4">
+    <h2>Buscar Alumnos por docente</h2>
+    <div class="input-group mb-3">
+      <input type="number" [(ngModel)]="selectedDocenteLegajo" class="form-control" placeholder="Ingresar Legajo de docente">
+      <button (click)="buscarAlumnosPorDocente()" class="btn btn-success ms-2">Buscar</button>
+    </div>
+  </div>
+
+  <div *ngIf="alumnosFiltrados.length > 0; else noAlumnos">
+    <h3>Resultados de la Búsqueda</h3>
+    <table class="table table-striped table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha de Nacimiento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alumno of alumnosFiltrados">
+          <td>{{ alumno.nombre }}</td>
+          <td>{{ alumno.fechaNacimiento }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noAlumnos>
+    <p>No se encontraron alumnos de los cursos vigentes de este docente.</p>
+  </ng-template>
+</div>
+
+
+<h2>Lista de Cursos</h2>
+  <table class="table table-striped table-bordered">
+    <thead class="table-success"> 
+      <tr>
+        <th>ID</th>
+        <th>Tema</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Fin</th>
+        <th>Docente</th>
+        <th>Precio</th>
+        <th>Alumnos</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let curso of cursos">
+        <td>{{ curso.id }}</td>
+        <td>{{ curso.tema.nombre }}</td>
+        <td>{{ curso.fechaInicio | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ curso.fechaFin | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ curso.docente.nombre }}</td>
+        <td>{{ curso.precio | currency }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let alumno of curso.alumnos">
+              {{ alumno.nombre }}
+            </li>
+          </ul>
+        <td>
+          <button (click)="editCurso(curso.id!)" class="btn btn-success me-2">Editar</button>
+          <button (click)="deleteCurso(curso.id!)" class="btn btn-secondary" onclick="return confirm('¿Estás seguro de que deseas eliminar este curso?');">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="mb-3">
+    <button (click)="addCurso()" class="btn btn-success">Agregar Curso</button>
+  </div>
+  
+</div>

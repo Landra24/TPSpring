@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>{{ cursoId ? 'Editar Curso' : 'Agregar Curso' }}</h2>
+
+  <form (ngSubmit)="GuardarCurso()">
+    <div class="mb-3">
+      <label for="tema" class="form-label">Tema</label>
+      <select id="tema" [(ngModel)]="curso.tema" name="tema" class="form-select" required>
+        <option *ngFor="let tema of temas" [ngValue]="tema">{{ tema.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+      <input type="date" id="fechaInicio" [(ngModel)]="curso.fechaInicio" name="fechaInicio" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="fechaFin" class="form-label">Fecha de Fin</label>
+      <input type="date" id="fechaFin" [(ngModel)]="curso.fechaFin" name="fechaFin" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="docente" class="form-label">Docente</label>
+      <select id="docente" [(ngModel)]="curso.docente" name="docente" class="form-select" required>
+        <option *ngFor="let docente of docentes" [ngValue]="docente">{{ docente.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="precios" class="form-label">Precio</label>
+      <input type="number" id="precio" [(ngModel)]="curso.precio" name="precio" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="alumno" class="form-label">Alumnos</label>
+      <select id="alumno" [(ngModel)]="selectedAlumno" name="alumno" class="form-select">
+        <option *ngFor="let alumno of alumnos" [ngValue]="alumno">{{ alumno.nombre }}</option>
+      </select>
+      <button type="button" (click)="addAlumno()" class="btn btn-success">Agregar Alumno</button>
+    </div>
+
+    <div class="mb-3">
+      <h4>Alumnos Agregados</h4>
+      <ul>
+        <li *ngFor="let alumno of curso.alumnos">
+          {{ alumno.nombre }} <button type="button" (click)="removeAlumno(alumno)" class="btn btn-danger">Eliminar</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <button type="button" (click)="cancel()" class="btn btn-secondary">Cancelar</button>
+    </div>
+
+    
+  </form>
+</div>

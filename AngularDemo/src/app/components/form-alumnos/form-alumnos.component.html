@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>{{ alumnoId ? 'Editar Alumno' : 'Agregar Alumno' }}</h2>
+  <form (ngSubmit)="GuardarAlumno()">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input
+        id="nombre"
+        [(ngModel)]="alumno.nombre"
+        name="nombre"
+        class="form-control"
+        required
+        placeholder="Ingrese el nombre del alumno"
+        #nombre="ngModel"
+      />
+      <div *ngIf="nombre.invalid && nombre.touched" class="text-danger">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+      <input
+        type="date"
+        id="fechaNacimiento"
+        [(ngModel)]="alumno.fechaNacimiento"
+        name="fechaNacimiento"
+        class="form-control"
+        required
+        #fechaNacimiento="ngModel"
+      />
+      <div *ngIf="fechaNacimiento.invalid && fechaNacimiento.touched" class="text-danger">
+        La fecha de nacimiento es obligatoria.
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <button type="submit" class="btn btn-success">
+        {{ alumnoId ? 'Actualizar' : 'Guardar' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()"> Cancelar </button>
+    </div>
+  </form>
+</div>

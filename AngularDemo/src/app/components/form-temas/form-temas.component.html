@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>{{ temaId ? 'Editar Tema' : 'Agregar Tema' }}</h2>
+  <form (ngSubmit)="GuardarTema()">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input 
+        id="nombre" 
+        type="text" 
+        name="nombre" 
+        [(ngModel)]="tema.nombre" 
+        class="form-control"
+        required
+        #nombre="ngModel"
+      />
+      <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
+        El nombre es requerido.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="descripcion">Descripción:</label>
+      <textarea 
+        id="descripcion" 
+        name="descripcion" 
+        [(ngModel)]="tema.descripcion" 
+        class="form-control"
+        required
+        #descripcion="ngModel"
+      ></textarea>
+      <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
+        La descripción es requerida.
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <button type="submit" class="btn btn-success">
+        {{ temaId ? 'Actualizar' : 'Guardar' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>

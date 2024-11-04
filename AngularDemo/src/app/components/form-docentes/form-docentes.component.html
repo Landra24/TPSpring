@@ -1,0 +1,27 @@
+<div class="container"> 
+ <h2>{{ docenteLegajo ? 'Editar Docente' : 'Agregar Docente' }}</h2>
+  <form (ngSubmit)="GuardarDocente()">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input
+        id="nombre"
+        [(ngModel)]="docente.nombre"
+        name="nombre"
+        class="form-control"
+        required
+        placeholder="Ingrese el nombre del docente"
+        #nombre="ngModel"
+      />
+      <div *ngIf="nombre.invalid && nombre.touched" class="text-danger">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <button type="submit" class="btn btn-success">
+        {{ docenteLegajo ? 'Actualizar' : 'Guardar' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()"> Cancelar </button>
+    </div>
+  </form>
+</div>
