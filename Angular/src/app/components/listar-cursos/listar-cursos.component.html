@@ -28,8 +28,8 @@
         <tr *ngFor="let curso of cursosFiltrados">
           <td>{{ curso.id }}</td>
           <td>{{ curso.tema.nombre }}</td>
-          <td>{{ curso.fechaInicio | date: 'dd/MM/yyyy' }}</td>
-          <td>{{ curso.fechaFin | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ curso.fechaInicio | date: 'yyyy/MM/dd' }}</td>
+          <td>{{ curso.fechaFin | date: 'yyyy/MM/dd' }}</td>
           <td>{{ curso.docente.nombre }}</td>
           <td>{{ curso.precio | currency }}</td>
           <td>
@@ -100,8 +100,8 @@
       <tr *ngFor="let curso of cursos">
         <td>{{ curso.id }}</td>
         <td>{{ curso.tema.nombre }}</td>
-        <td>{{ curso.fechaInicio | date: 'dd/MM/yyyy' }}</td>
-        <td>{{ curso.fechaFin | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ curso.fechaInicio | date: 'yyyy/MM/dd' }}</td>
+        <td>{{ curso.fechaFin | date: 'yyyy/MM/dd' }}</td>
         <td>{{ curso.docente.nombre }}</td>
         <td>{{ curso.precio | currency }}</td>
         <td>

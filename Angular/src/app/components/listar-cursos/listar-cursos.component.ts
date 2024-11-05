@@ -79,7 +79,10 @@ export class ListarCursosComponent implements OnInit {
   
     this.cursosService.getAlumnosDeCursosVigentesPorDocente(this.selectedDocenteLegajo).subscribe(
       (data) => {
-        this.alumnosFiltrados = data;
+        this.alumnosFiltrados = data.filter(
+          (alumno, index, self) =>
+            index === self.findIndex((a) => a.id === alumno.id)
+        );
       },
       (error) => {
         console.error('Error al buscar los alumnos por docente:', error);
